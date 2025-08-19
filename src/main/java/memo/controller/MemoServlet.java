@@ -11,6 +11,7 @@ import memo.model.dto.MemoDTO;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 @WebServlet(urlPatterns = {"/memos", "/memos/new"})
 public class MemoServlet extends HttpServlet {
@@ -56,7 +57,9 @@ public class MemoServlet extends HttpServlet {
 
         // 검증 생략...
 
-        Long userId = 1L;
+//        Long userId = 1L;
+        Random r = new Random();
+        Long userId = r.nextLong(1, 4); // 1~3번
         memoDAO.create(userId, title, content);
         // getContextPath -> [localhost:port/???]
         resp.sendRedirect(req.getContextPath() + "/memos");
